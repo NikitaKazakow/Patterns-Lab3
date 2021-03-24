@@ -12,10 +12,9 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
-        BaseChainOfResponsibility lineWriter, rowWriter;
-        lineWriter = new LineWriter();
-        rowWriter = lineWriter.setNext(new RowWriter());
-        rowWriter.setNext(lineWriter);
+        BaseChainOfResponsibility chain;
+        chain = new LineWriter();
+        chain.setNext(new RowWriter());
 
         try {
             Transport car = TransportManager.createInstance("Mitsubishi", 3);
@@ -24,13 +23,11 @@ public class Main {
             car.setModelName("Модель 2", "L200");
             car.setModelName("Модель 3", "Galant");
 
-            lineWriter.print(car);
-            rowWriter.print(car);
+            chain.print(car);
 
             car.addModelNameAndPrice("Pajero Sport", 1500000);
 
-            lineWriter.print(car);
-            rowWriter.print(car);
+            chain.print(car);
 
         } catch (NoSuchModelNameException | DuplicateModelNameException | IOException e) {
             e.printStackTrace();
