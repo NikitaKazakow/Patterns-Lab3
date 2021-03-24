@@ -1,18 +1,19 @@
 package transport.impl;
 
-import transport.Transport;
-import transport.exception.DuplicateModelNameException;
-import transport.exception.ModelPriceOutOfBoundsException;
-import transport.exception.NoSuchModelNameException;
 import command.Command;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import transport.Transport;
+import transport.exception.DuplicateModelNameException;
+import transport.exception.ModelPriceOutOfBoundsException;
+import transport.exception.NoSuchModelNameException;
 
 import java.io.FileOutputStream;
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class Car implements Transport, Cloneable {
+public class Car implements Transport, Cloneable, Iterable<Car.Model> {
 
     //region Fields
     @Getter
@@ -21,7 +22,6 @@ public class Car implements Transport, Cloneable {
 
     private Model[] models;
 
-    @Getter
     @Setter
     private Command printCommand;
     //endregion
@@ -171,11 +171,16 @@ public class Car implements Transport, Cloneable {
     public void print(FileOutputStream outputStream) {
         this.printCommand.execute(this, outputStream);
     }
+
+    @Override
+    public Iterator<Model> iterator() {
+        return new ModelIterator(this.models);
+    }
     //endregion
 
     //region Child class
     @AllArgsConstructor
-    protected class Model implements Cloneable {
+    public static class Model implements Cloneable {
         //Название модели
         private String modelName;
 
@@ -186,6 +191,33 @@ public class Car implements Transport, Cloneable {
         protected Model clone() throws CloneNotSupportedException {
             return (Model) super.clone();
         }
+
+        @Override
+        public String toString() {
+            return "Модель: \"" + modelName + "\" Цена: " + price;
+        }
     }
+
+    private static class ModelIterator implements Iterator<Model> {
+
+        private final Model[] models;
+        private int currentIndex;
+
+        public ModelIterator(Model[] models) {
+            this.currentIndex = 0;
+            this.models = models;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.currentIndex < this.models.length;
+        }
+
+        @Override
+        public Model next() {
+            return this.models[this.currentIndex++];
+        }
+    }
+
     //endregion
 }
