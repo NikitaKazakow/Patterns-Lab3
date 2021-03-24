@@ -1,6 +1,6 @@
-package chainOfResponsibility.transport;
+package transport;
 
-import chainOfResponsibility.transport.impl.CarFactory;
+import transport.impl.CarFactory;
 
 public class TransportManager {
 

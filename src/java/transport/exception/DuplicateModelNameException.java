@@ -1,4 +1,4 @@
-package chainOfResponsibility.transport.exception;
+package transport.exception;
 
 public class DuplicateModelNameException extends Exception {
     public DuplicateModelNameException(String message) {

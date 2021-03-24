@@ -2,10 +2,10 @@ package chainOfResponsibility;
 
 import chainOfResponsibility.impl.LineWriter;
 import chainOfResponsibility.impl.RowWriter;
-import chainOfResponsibility.transport.Transport;
-import chainOfResponsibility.transport.TransportManager;
-import chainOfResponsibility.transport.exception.DuplicateModelNameException;
-import chainOfResponsibility.transport.exception.NoSuchModelNameException;
+import transport.Transport;
+import transport.TransportManager;
+import transport.exception.DuplicateModelNameException;
+import transport.exception.NoSuchModelNameException;
 
 import java.io.IOException;
 

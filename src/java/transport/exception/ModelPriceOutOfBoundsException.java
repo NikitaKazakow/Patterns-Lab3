@@ -1,4 +1,4 @@
-package chainOfResponsibility.transport.exception;
+package transport.exception;
 
 public class ModelPriceOutOfBoundsException extends RuntimeException {
     public ModelPriceOutOfBoundsException(String errorMessage) {

@@ -1,7 +1,7 @@
-package chainOfResponsibility.transport.impl;
+package transport.impl;
 
-import chainOfResponsibility.transport.Transport;
-import chainOfResponsibility.transport.TransportFactory;
+import transport.Transport;
+import transport.TransportFactory;
 
 public class MotorcycleFactory implements TransportFactory {
     @Override

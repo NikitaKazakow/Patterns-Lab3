@@ -1,9 +1,9 @@
-package chainOfResponsibility.transport.impl;
+package transport.impl;
 
-import chainOfResponsibility.transport.Transport;
-import chainOfResponsibility.transport.exception.DuplicateModelNameException;
-import chainOfResponsibility.transport.exception.ModelPriceOutOfBoundsException;
-import chainOfResponsibility.transport.exception.NoSuchModelNameException;
+import transport.Transport;
+import transport.exception.DuplicateModelNameException;
+import transport.exception.ModelPriceOutOfBoundsException;
+import transport.exception.NoSuchModelNameException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

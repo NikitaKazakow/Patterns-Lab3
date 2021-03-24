@@ -1,13 +1,15 @@
-package chainOfResponsibility.transport.impl;
+package transport.impl;
 
-import chainOfResponsibility.transport.Transport;
-import chainOfResponsibility.transport.exception.DuplicateModelNameException;
-import chainOfResponsibility.transport.exception.ModelPriceOutOfBoundsException;
-import chainOfResponsibility.transport.exception.NoSuchModelNameException;
+import transport.Transport;
+import transport.exception.DuplicateModelNameException;
+import transport.exception.ModelPriceOutOfBoundsException;
+import transport.exception.NoSuchModelNameException;
+import command.Command;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.FileOutputStream;
 import java.util.Arrays;
 
 public class Car implements Transport, Cloneable {
@@ -18,6 +20,10 @@ public class Car implements Transport, Cloneable {
     private String brand;
 
     private Model[] models;
+
+    @Getter
+    @Setter
+    private Command printCommand;
     //endregion
 
     //region Constructor
@@ -162,6 +168,9 @@ public class Car implements Transport, Cloneable {
         return clone;
     }
 
+    public void print(FileOutputStream outputStream) {
+        this.printCommand.execute(this, outputStream);
+    }
     //endregion
 
     //region Child class

@@ -1,7 +1,7 @@
-package chainOfResponsibility.transport;
+package transport;
 
-import chainOfResponsibility.transport.exception.DuplicateModelNameException;
-import chainOfResponsibility.transport.exception.NoSuchModelNameException;
+import transport.exception.DuplicateModelNameException;
+import transport.exception.NoSuchModelNameException;
 
 public interface Transport {
 

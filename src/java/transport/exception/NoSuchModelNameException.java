@@ -1,4 +1,4 @@
-package chainOfResponsibility.transport.exception;
+package transport.exception;
 
 public class NoSuchModelNameException extends Exception {
     public NoSuchModelNameException(String message) {
