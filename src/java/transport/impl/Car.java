@@ -180,7 +180,7 @@ public class Car implements Transport, Cloneable, Iterable<Car.Model> {
 
     //region Child class
     @AllArgsConstructor
-    public static class Model implements Cloneable {
+    public class Model implements Cloneable {
         //Название модели
         private String modelName;
 
@@ -198,7 +198,7 @@ public class Car implements Transport, Cloneable, Iterable<Car.Model> {
         }
     }
 
-    private static class ModelIterator implements Iterator<Model> {
+    private class ModelIterator implements Iterator<Model> {
 
         private final Model[] models;
         private int currentIndex;
@@ -218,6 +218,5 @@ public class Car implements Transport, Cloneable, Iterable<Car.Model> {
             return this.models[this.currentIndex++];
         }
     }
-
     //endregion
 }

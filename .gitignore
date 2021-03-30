@@ -1,5 +1,6 @@
+/Lab3.iml
 /.idea/
 /out/
-/Lab3.iml
 /src/resources/chainOfResponsibility/
 /src/resources/command/
+/src/resources/strategy/out/
