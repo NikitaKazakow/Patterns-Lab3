@@ -1,0 +1,17 @@
+VBox {
+    -fx-background-color: #879bab;
+    -fx-alignment: center;
+}
+
+Button {
+    -fx-padding: 15pt;
+    -fx-border-insets: 15pt;
+    -fx-background-insets: 15pt;
+    -fx-pref-height: 100pt;
+    -fx-pref-width: 100pt;
+    -fx-background-radius: 50%;
+}
+
+Label {
+    -fx-padding: 10pt;
+}
