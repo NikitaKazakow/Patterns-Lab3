@@ -1,7 +1,6 @@
-package templateMethod.impl;
+package templateMethod.figure;
 
 import javafx.scene.shape.Rectangle;
-import templateMethod.BaseFigure;
 
 public class Square extends BaseFigure<Rectangle> {
 

@@ -1,9 +1,10 @@
 package command;
 
-import transport.impl.Car;
+import iterator.Car;
 
-import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.Serializable;
 
-public interface Command {
-    void execute(Car car, FileOutputStream outputStream);
+public interface Command extends Serializable {
+    void execute(Car car, PrintWriter outputStream);
 }

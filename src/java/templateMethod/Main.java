@@ -11,7 +11,6 @@ import java.io.IOException;
 public class Main extends Application {
 
     private Stage primaryStage;
-    private Pane rootLayout;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -28,8 +27,7 @@ public class Main extends Application {
 
     private void initRootLayout() {
         try {
-
-            rootLayout = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            Pane rootLayout = FXMLLoader.load(getClass().getResource("Main.fxml"));
             rootLayout.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
 
             Scene scene = new Scene(rootLayout);

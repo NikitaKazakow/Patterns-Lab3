@@ -1,15 +1,15 @@
-package transport.impl;
+package iterator;
 
-import transport.Transport;
-import transport.exception.DuplicateModelNameException;
-import transport.exception.ModelPriceOutOfBoundsException;
-import transport.exception.NoSuchModelNameException;
+import iterator.exception.DuplicateModelNameException;
+import iterator.exception.ModelPriceOutOfBoundsException;
+import iterator.exception.NoSuchModelNameException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import visitor.TransportVisitor;
 
-public class Motorcycle implements Transport, Cloneable {
+public class Motorcycle implements Transport {
 
     //region Fields
     @Getter
@@ -223,12 +223,16 @@ public class Motorcycle implements Transport, Cloneable {
         return clone;
     }
 
+    @Override
+    public void accept(TransportVisitor visitor) {
+        visitor.visitMotorcycle(this);
+    }
     //endregion
 
     //region Child class
     @NoArgsConstructor
     @AllArgsConstructor
-    protected class Model implements Cloneable{
+    public class Model implements Cloneable{
 
         String modelName = null;
 
@@ -242,5 +246,6 @@ public class Motorcycle implements Transport, Cloneable {
             return (Model)super.clone();
         }
     }
+
     //endregion
 }

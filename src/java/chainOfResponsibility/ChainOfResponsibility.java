@@ -1,6 +1,6 @@
 package chainOfResponsibility;
 
-import transport.Transport;
+import iterator.Transport;
 
 import java.io.IOException;
 

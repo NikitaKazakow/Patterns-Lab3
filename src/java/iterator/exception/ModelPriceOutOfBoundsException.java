@@ -1,4 +1,4 @@
-package transport.exception;
+package iterator.exception;
 
 public class ModelPriceOutOfBoundsException extends RuntimeException {
     public ModelPriceOutOfBoundsException(String errorMessage) {

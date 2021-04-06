@@ -1,7 +1,4 @@
-package transport.impl;
-
-import transport.Transport;
-import transport.TransportFactory;
+package iterator;
 
 public class MotorcycleFactory implements TransportFactory {
     @Override

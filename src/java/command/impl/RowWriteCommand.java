@@ -1,14 +1,13 @@
 package command.impl;
 
-import transport.impl.Car;
 import command.Command;
+import iterator.Car;
 
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+import java.io.PrintWriter;
 
 public class RowWriteCommand implements Command {
     @Override
-    public void execute(Car car, FileOutputStream outputStream) {
+    public void execute(Car car, PrintWriter printWriter) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Марка: ").append(car.getBrand()).append("\n");
         stringBuilder.append("Модели:\n\t");
@@ -17,8 +16,8 @@ public class RowWriteCommand implements Command {
         }
         String result = stringBuilder.toString();
 
-        PrintStream printStream = new PrintStream(outputStream);
-        printStream.print(result);
+        printWriter.print(result);
+        printWriter.close();
 
         System.out.println("RowWriter:\n" + result + "\n");
     }

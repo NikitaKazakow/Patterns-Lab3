@@ -1,6 +1,5 @@
 package templateMethod;
 
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,9 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
 import lombok.Getter;
 import lombok.Setter;
-import templateMethod.impl.Circle;
-import templateMethod.impl.Square;
-import templateMethod.impl.Star;
+import templateMethod.figure.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -82,7 +79,7 @@ public class Controller implements Initializable {
     public void closeApplication() {
         for (var figure : figures) {
             figure.destroy();
-            Platform.exit();
         }
+        Platform.exit();
     }
 }

@@ -1,7 +1,7 @@
 package chainOfResponsibility.impl;
 
 import chainOfResponsibility.BaseChainOfResponsibility;
-import transport.Transport;
+import iterator.Transport;
 
 import java.io.IOException;
 import java.nio.file.Files;

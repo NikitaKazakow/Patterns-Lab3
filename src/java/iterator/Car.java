@@ -1,19 +1,19 @@
-package transport.impl;
+package iterator;
 
 import command.Command;
+import iterator.exception.DuplicateModelNameException;
+import iterator.exception.ModelPriceOutOfBoundsException;
+import iterator.exception.NoSuchModelNameException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import transport.Transport;
-import transport.exception.DuplicateModelNameException;
-import transport.exception.ModelPriceOutOfBoundsException;
-import transport.exception.NoSuchModelNameException;
+import visitor.TransportVisitor;
 
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class Car implements Transport, Cloneable, Iterable<Car.Model> {
+public class Car implements Transport, Iterable<Car.Model> {
 
     //region Fields
     @Getter
@@ -157,7 +157,7 @@ public class Car implements Transport, Cloneable, Iterable<Car.Model> {
     @Override
     public Car clone() throws CloneNotSupportedException {
 
-        Car clone = (Car)super.clone();
+        Car clone = (Car) super.clone();
 
         int size = this.getModelsCount();
 
@@ -168,19 +168,35 @@ public class Car implements Transport, Cloneable, Iterable<Car.Model> {
         return clone;
     }
 
-    public void print(FileOutputStream outputStream) {
+    @Override
+    public void accept(TransportVisitor visitor) {
+        visitor.visitCar(this);
+    }
+
+    public void print(PrintWriter outputStream) {
         this.printCommand.execute(this, outputStream);
     }
 
     @Override
     public Iterator<Model> iterator() {
-        return new ModelIterator(this.models);
+        return new ModelIterator();
     }
+
+    public CarMemento createMemento() {
+        CarMemento carMemento = new CarMemento();
+        carMemento.setCar(this);
+        return carMemento;
+    }
+
+    public Car setMemento(CarMemento memento) {
+        return memento.getCar();
+    }
+
     //endregion
 
     //region Child class
     @AllArgsConstructor
-    public class Model implements Cloneable {
+    public class Model implements Cloneable, Serializable {
         //Название модели
         private String modelName;
 
@@ -198,24 +214,54 @@ public class Car implements Transport, Cloneable, Iterable<Car.Model> {
         }
     }
 
-    private class ModelIterator implements Iterator<Model> {
+    private class ModelIterator implements Iterator<Model>, Serializable {
 
-        private final Model[] models;
         private int currentIndex;
 
-        public ModelIterator(Model[] models) {
+        public ModelIterator() {
             this.currentIndex = 0;
-            this.models = models;
         }
 
         @Override
         public boolean hasNext() {
-            return this.currentIndex < this.models.length;
+            return this.currentIndex < models.length;
         }
 
         @Override
         public Model next() {
-            return this.models[this.currentIndex++];
+            return models[this.currentIndex++];
+        }
+    }
+
+    public static class CarMemento {
+
+        private byte[] carBytes;
+
+        public void setCar(Car car) {
+            try (
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)
+            ) {
+
+                objectOutputStream.writeObject(car);
+                carBytes = byteArrayOutputStream.toByteArray();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public Car getCar() {
+            Car car = null;
+            try (
+                    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(carBytes);
+                    ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)
+            ) {
+                car = (Car) objectInputStream.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            return car;
         }
     }
     //endregion

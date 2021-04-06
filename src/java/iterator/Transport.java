@@ -1,9 +1,12 @@
-package transport;
+package iterator;
 
-import transport.exception.DuplicateModelNameException;
-import transport.exception.NoSuchModelNameException;
+import iterator.exception.DuplicateModelNameException;
+import iterator.exception.NoSuchModelNameException;
+import visitor.TransportVisitor;
 
-public interface Transport {
+import java.io.Serializable;
+
+public interface Transport extends Serializable, Cloneable {
 
     String getBrand();
 
@@ -26,4 +29,6 @@ public interface Transport {
     int getModelsCount();
 
     Transport clone() throws CloneNotSupportedException;
+
+    void accept(TransportVisitor visitor);
 }

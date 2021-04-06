@@ -1,8 +1,7 @@
 package iterator;
 
-import transport.exception.DuplicateModelNameException;
-import transport.exception.NoSuchModelNameException;
-import transport.impl.Car;
+import iterator.exception.DuplicateModelNameException;
+import iterator.exception.NoSuchModelNameException;
 
 public class Main {
     public static void main(String[] args) {

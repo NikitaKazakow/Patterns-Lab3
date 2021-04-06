@@ -1,13 +1,14 @@
-package templateMethod;
+package templateMethod.figure;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Random;
 
-public abstract class BaseFigure<T> {
+public abstract class BaseFigure<T extends Shape> {
 
     protected boolean isInAnimationArea;
 
@@ -32,9 +33,9 @@ public abstract class BaseFigure<T> {
         isInAnimationArea = false;
     }
 
-    protected abstract void animate();
+    public abstract void animate();
 
-    protected void destroy() {
+    public void destroy() {
         timer.stop();
     }
 
@@ -43,7 +44,5 @@ public abstract class BaseFigure<T> {
         return Color.color(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
     }
 
-    protected abstract static class FigureAnimationTimer extends AnimationTimer {
-
-    }
+    protected abstract static class FigureAnimationTimer extends AnimationTimer { }
 }

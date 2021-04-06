@@ -4,8 +4,7 @@ public abstract class BaseChainOfResponsibility implements ChainOfResponsibility
 
     protected BaseChainOfResponsibility next;
 
-    public BaseChainOfResponsibility setNext(BaseChainOfResponsibility writer) {
+    public void setNext(BaseChainOfResponsibility writer) {
         this.next = writer;
-        return writer;
     }
 }

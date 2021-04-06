@@ -1,5 +1,8 @@
-package templateMethod;
+package templateMethod.figure;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public enum Figures {
 
     CIRCLE("Мяч"),
@@ -7,10 +10,6 @@ public enum Figures {
     STAR("Звезда");
 
     private final String code;
-
-    Figures(String code) {
-        this.code = code;
-    }
 
     @Override
     public String toString() {

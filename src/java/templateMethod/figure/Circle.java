@@ -1,6 +1,4 @@
-package templateMethod.impl;
-
-import templateMethod.BaseFigure;
+package templateMethod.figure;
 
 public class Circle extends BaseFigure<javafx.scene.shape.Circle> {
 

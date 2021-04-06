@@ -1,7 +1,6 @@
-package templateMethod.impl;
+package templateMethod.figure;
 
 import javafx.scene.shape.Polygon;
-import templateMethod.BaseFigure;
 
 import java.util.ArrayList;
 import java.util.List;
